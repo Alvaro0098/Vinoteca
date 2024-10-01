@@ -15,46 +15,55 @@ namespace Vinoteca.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddWine(CreateAndUpdateWineDto dto)
+        public IActionResult AddWine([FromBody] CreateAndUpdateWineDto wine)
         {
             try
             {
-                _wineService.addOneWine(dto);
+                _wineService.addWine(wine);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex);
             }
-            return Created("Created", dto);
+            return Created("Created", wine);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult getOneWineById(int id)
+
+        [HttpGet]
+        public IActionResult GetAll()
         {
-            var wine = _wineService.getOneWine(id);
+            var users = _wineService.GetAllWines();
+            return Ok(users);
 
-
-            if (wine != null)
-            {
-                return Ok(wine);  // Retorna el objeto completo si existe
-            }
-
-            return NotFound();
         }
 
+        //[HttpGet("{id}")]
+        //public IActionResult getOneWineById(int id)
+        //{
+        //    var wine = _wineService.getOneWine(id);
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteWine(int id)
-        {
-            bool isRemoved = _wineService.RemoveOneWine(id);
 
-            if (isRemoved)
-            {
-                return Ok(); // El usuario fue eliminado correctamente
-            }
+        //    if (wine != null)
+        //    {
+        //        return Ok(wine);  // Retorna el objeto completo si existe
+        //    }
 
-            return NotFound(); // El usuario no fue encontrado
-        }
+        //    return NotFound();
+        //}
+
+
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteWine(int id)
+        //{
+        //    bool isRemoved = _wineService.RemoveOneWine(id);
+
+        //    if (isRemoved)
+        //    {
+        //        return Ok(); // El usuario fue eliminado correctamente
+        //    }
+
+        //    return NotFound(); // El usuario no fue encontrado
+        //}
 
     }
 

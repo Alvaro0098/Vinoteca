@@ -6,12 +6,13 @@ namespace Vinoteca.Services.interfaces
 {
     public interface IWineService
     {
-        
-        void addOneWine(CreateAndUpdateWineDto dto);
 
-        Wine? getOneWine(int id);
+        void addWine(CreateAndUpdateWineDto wine);
 
-        public bool RemoveOneWine(int id);
+        public List<Wine> GetAllWines();
+        //Wine? getOneWine(int id);
+
+        //public bool RemoveOneWine(int id);
 
     }
 }

@@ -1,9 +1,15 @@
-﻿namespace Vinoteca.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Vinoteca.Entities
 {
     public class User
     {
         public int id { get; set; }
-        public string userName { get; set; }
-        public string lastName { get; set; }
+
+        [Required]
+        public string UserName { get; set; } = string.Empty;
+
+        [MinLength(8)]
+        public string Password { get; set; }
     }
 }

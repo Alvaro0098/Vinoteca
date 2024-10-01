@@ -17,8 +17,8 @@ namespace Vinoteca.Services
         {
             User newUser = new User()
             {
-                userName = dto.userName,
-                lastName = dto.lastName
+                UserName = dto.UserName,
+                Password = dto.Password
             };
             _userRepository.addUser(newUser);
 

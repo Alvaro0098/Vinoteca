@@ -4,32 +4,38 @@ using Vinoteca.Repository.interfaces;
 
 namespace Vinoteca.Repository
 {
-    public class WineRepository : IWineRepository
+    public class WineRepository : IWineRepository //va a tener las definiciones de los metodos que estan en el repositorio, definicion: que retorna y como se llama
     {
         public static List<Wine> wines = new List<Wine>();
 
-        public Wine GetWineById(int id)
-        {
-            return wines.FirstOrDefault(w => w.id == id);
-        }
+        //los metodos interactuan directamente con la lista 
+        //public Wine GetWineById(int id)
+        //{
+        //    return wines.FirstOrDefault(w => w.id == id);
+        //}
 
-        public void addWine(Wine wine)
+        public void addOneWine(Wine wine) // es un void porque hace una operacion y no hace falta que devuelva nada
         {
             wines.Add(wine);
         }
 
-        public bool removeWine(int id)
+        public List<Wine> GetWinesList()
         {
-            var wineToRemove = wines.FirstOrDefault(u => u.id == id);
-
-            if (wineToRemove != null)
-            {
-                wines.Remove(wineToRemove);
-                return true;
-            }
-
-            return false;
+            return wines.ToList();
         }
+
+        //public bool removeWine(int id)
+        //{
+        //    var wineToRemove = wines.FirstOrDefault(u => u.id == id);
+
+        //    if (wineToRemove != null)
+        //    {
+        //        wines.Remove(wineToRemove);
+        //        return true;
+        //    }
+
+        //    return false;
+        //}
 
 
     }

@@ -2,8 +2,8 @@
 {
     public class CreateAndUpdateUserDto
     {
-        public string userName { get; set; }
-        public string lastName { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
         
 
     }
