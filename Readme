@@ -6,4 +6,7 @@ Tambien adicionalmente cree un endPoint de tipo GET para recuperar todos los usu
 
 WineController:
 Cree en este controlador los endPoints para crear POST objetos de la entidad Wine y para traerme la lista de objetos GET ubicada en el repository. Usando tambien DTO para la creacion y utilizando el mismo procedimiento que para los usuarios.
-Agregue el decorador [Required] en la entidad Wine pero tambien el swagger me permitio la creacion de objetos con Name "".  
+
+Los decoradores de required y minLenght no me funcionan ya que desde swagger me permite crear el usuario y poner mas de 8 caracteres, estos fueron agregados en los dtos para la creacion de usuarios y inventario de vinos
+
+
