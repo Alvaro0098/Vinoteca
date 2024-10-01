@@ -15,7 +15,7 @@ namespace Vinoteca.Entities
 
         public string Region { get; set; } = string.Empty;
 
-        [Range(0, int.MaxValue, ErrorMessage = "La cantidad disponible en stock debe ser mayor o igual a 0.")]
+        //[Range(0, int.MaxValue, ErrorMessage = "La cantidad disponible en stock debe ser mayor o igual a 0.")]
         private int _stock;
         public int Stock
         {
