@@ -1,9 +1,12 @@
 UserController:
-Cree un endPoint de tipo POST para la creacion de usuarios 'public IActionResult AddUser([FromBody] CreateAndUpdateUserDto dto)'. Agregando en la entity el decorador [Required] para le propiedad UserName y [MinLength(8)] para exigir al usuario a que la contraseña tenga minimo 8 caracteres, en la declaracion uso [FromBody] para pasarle los parametros en el cuerpo a la hora de hacerle la request al endPoint ya sea desde swagger o desde postman. Vale aclarar que utilizo un dto para la creacion donde solo estan las propiedaes UserName y Password ya que el id luego sera manejando por el ORM. 
+Cree un endPoint de tipo POST para la creacion de usuarios 'public IActionResult AddUser([FromBody] CreateAndUpdateUserDto dto)'. Agregando en la entity y dtos el decorador [Required] para le propiedad UserName y [MinLength(8)] para exigir al usuario a que la contraseña tenga minimo 8 caracteres, en la declaracion uso [FromBody] para pasarle los parametros en el cuerpo a la hora de hacerle la request al endPoint ya sea desde swagger o desde postman. Vale aclarar que utilizo un dto para la creacion donde solo estan las propiedaes UserName y Password ya que el id luego sera manejando por el ORM. 
 En las pruebas se me genera de igual forma el usuario cuando ejecuto con UserName "" o la password con menos de 8 digitos como si no funcionarian por algun motivo los decoradores
 
 Tambien adicionalmente cree un endPoint de tipo GET para recuperar todos los usuarios creados 'public IActionResult GetAll()' 
 
 WineController:
 Cree en este controlador los endPoints para crear POST objetos de la entidad Wine y para traerme la lista de objetos GET ubicada en el repository. Usando tambien DTO para la creacion y utilizando el mismo procedimiento que para los usuarios.
-Agregue el decorador [Required] en la entidad Wine pero tambien el swagger me permitio la creacion de objetos con Name "".  
+
+Los decoradores de required y minLenght no me funcionan ya que desde swagger me permite crear el usuario y poner mas de 8 caracteres, estos fueron agregados en los dtos para la creacion de usuarios y inventario de vinos
+
+
