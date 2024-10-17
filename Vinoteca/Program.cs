@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Vinoteca.Data;
+using Vinoteca.Entities;
 using Vinoteca.Repository;
 using Vinoteca.Repository.interfaces;
 using Vinoteca.Services;
@@ -12,13 +16,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<VinotecaContext>(dbContextOptions => dbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:VinotecaAPIDBConnectionString"]));
+
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IWineService, WineService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWineRepository, WineRepository>();
-
 var app = builder.Build();
+
+
 
 
 

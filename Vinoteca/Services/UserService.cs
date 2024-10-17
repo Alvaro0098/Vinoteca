@@ -15,18 +15,14 @@ namespace Vinoteca.Services
         }
         public void AddOneUser(CreateAndUpdateUserDto dto)
         {
-            User newUser = new User()
-            {
-                UserName = dto.UserName,
-                Password = dto.Password
-            };
-            _userRepository.addUser(newUser);
+    
+            _userRepository.Create(dto);
 
         }
 
-        public User? GetOneUserId(int id)
+        public GetUserByIdDto GetOneUser(int id)
         {
-            return _userRepository.GetOneUser(id);
+            return _userRepository.GetOneUserById(id);
         }
 
         public List<User> GetAllUsers()
@@ -34,9 +30,9 @@ namespace Vinoteca.Services
             return _userRepository.GetUsersList();
         }
 
-        public bool RemoveOneUser(int id)
+        public void RemoveOneUser(int id)
         {
-            return _userRepository.removeUser(id);
+             _userRepository.removeUser(id);
         }
     }
 

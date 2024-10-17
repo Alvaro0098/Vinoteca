@@ -9,8 +9,8 @@ namespace Vinoteca.Services.interfaces
 
        public List<User> GetAllUsers();
 
-      User? GetOneUserId(int id);
+      GetUserByIdDto GetOneUser(int id);
 
-      public bool RemoveOneUser(int id);
+      public void RemoveOneUser(int id);
     }
 }

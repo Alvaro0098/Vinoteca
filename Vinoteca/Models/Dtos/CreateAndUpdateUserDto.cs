@@ -4,7 +4,7 @@ namespace Vinoteca.Models.Dtos
 {
     public class CreateAndUpdateUserDto
     {
-        [Required]
+        [StringLength(12, MinimumLength = 0, ErrorMessage = "El usuario no puede ser vacio")]
         public string UserName { get; set; }
 
         [MinLength(8)]

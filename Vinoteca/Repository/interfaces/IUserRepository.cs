@@ -1,4 +1,5 @@
 ﻿using Vinoteca.Entities;
+using Vinoteca.Models.Dtos;
 
 namespace Vinoteca.Repository.interfaces
 {
@@ -6,9 +7,13 @@ namespace Vinoteca.Repository.interfaces
     {
         public List<User> GetUsersList();
 
-        User? GetOneUser(int id);
-        void addUser(User user);
+     
+        void Create(CreateAndUpdateUserDto userDto);
 
-        bool removeUser(int id);
+        GetUserByIdDto GetOneUserById(int userId);
+
+        void removeUser(int id);
+
+        void Delete(int id);
     }
 }

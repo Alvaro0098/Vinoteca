@@ -1,49 +1,74 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+using Mono.TextTemplating;
+using System.Data;
+using Vinoteca.Data;
 using Vinoteca.Entities;
+using Vinoteca.Models.Dtos;
 using Vinoteca.Repository.interfaces;
 
 namespace Vinoteca.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public static List<User> users = new List<User>();
+        private VinotecaContext _context;
 
-
+        public UserRepository(VinotecaContext context)
+        {
+            _context = context;
+        }
 
         public List<User> GetUsersList()
         {
-            return users.ToList();
+            return _context.Users.ToList();
         }
 
-        public void addUser(User user)
+        public void Create(CreateAndUpdateUserDto dto)
         {
-            users.Add(user);
-        }
-
-
-        public User GetOneUser(int id)
-        {
-            var userId = users.FirstOrDefault(u => u.id == id);
-
-            if (userId == null)
+            User newUser = new User()
             {
-                return null;
+                UserName = dto.UserName,
+                Password = dto.Password,
+       
+            };
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+        }
+
+        public GetUserByIdDto? GetOneUserById(int userId)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.id == userId);
+            if (user is not null)
+            {
+                return new GetUserByIdDto()
+                {
+                    UserName = user.UserName,
+                };
+            }
+            return null;
+        }
+
+        public void removeUser(int userId)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.id == userId);
+            if (user is null)
+            {
+                throw new Exception("El cliente que intenta eliminar no existe");
             }
 
-            return userId;
-        }
-
-        public bool removeUser(int id)
-        {
-            var userToRemove = users.FirstOrDefault(u => u.id == id);
-
-            if (userToRemove != null)
+            if (user.UserName != "Admin")
             {
-                users.Remove(userToRemove);
-                return true;
+                Delete(userId);
             }
 
-            return false;
         }
+
+        public void Delete(int id)
+        {
+            _context.Users.Remove(_context.Users.Single(u => u.id == id));
+            _context.SaveChanges();
+        }
+
+
     }
 }

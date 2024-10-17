@@ -35,5 +35,21 @@ namespace Vinoteca.Controllers
             return Ok(users);
 
         }
+
+
+        [HttpDelete]
+        public IActionResult RemoveUser(int id)
+        {
+            try
+            {
+                _userService.RemoveOneUser(id);
+            }
+            catch (Exception ex)
+            {
+                BadRequest(ex);
+            }
+            return NoContent();
+
+        }
     }
 }
