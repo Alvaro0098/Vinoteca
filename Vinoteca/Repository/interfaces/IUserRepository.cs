@@ -7,6 +7,7 @@ namespace Vinoteca.Repository.interfaces
     {
         public List<User> GetUsersList();
 
+        public User? Authenticate(string username, string password); 
      
         void Create(CreateAndUpdateUserDto userDto);
 

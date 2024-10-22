@@ -9,10 +9,12 @@ namespace Vinoteca.Services.interfaces
 
         void addWine(CreateAndUpdateWineDto wine);
 
-        public List<Wine> GetAllWines();
-        //Wine? getOneWine(int id);
+        public List<GetWineByDto> GetAllWines();
+        GetWineByDto GetOneWine(int id);
 
-        //public bool RemoveOneWine(int id);
+        List<Wine> GetWinesByVariety(string variety);
+
+        public bool ChangeWineStock(int id, int newStock);
 
     }
 }

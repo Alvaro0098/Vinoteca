@@ -1,9 +1,9 @@
 ﻿namespace Vinoteca.Models.Dtos
 {
-    public class GetUserByIdDto
+    public class CredentialsForAuthenticateDto
     {
-        public int Id { get; set; }
         public string UserName { get; set; }
+        public string  Passwords { get; set; }
 
     }
 }

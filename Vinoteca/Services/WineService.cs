@@ -10,7 +10,7 @@ namespace Vinoteca.Services
     public class WineService : IWineService
     {
         public readonly IWineRepository _wineRepository; //crea una variable privada de lectura de la interfaz
-    
+
         public WineService(IWineRepository wineRepository)
         {
             _wineRepository = wineRepository;
@@ -18,30 +18,30 @@ namespace Vinoteca.Services
 
         public void addWine([FromBody] CreateAndUpdateWineDto dto)
         {
-            Wine newWine = new Wine()
-            {
-                Name = dto.Name,
-                Region = dto.Region,
-                Variety = dto.Variety,
-                CreatedAt = dto.CreatedAt,
-                Year = dto.Year,
-                Stock = dto.Stock,
 
-            };
-            _wineRepository.addOneWine(newWine);
-            
+            _wineRepository.addOneWine(dto);
+
         }
 
-        public List<Wine> GetAllWines()
+        public List<GetWineByDto> GetAllWines()
         {
             return _wineRepository.GetWinesList();
 
         }
 
-        //public bool RemoveOneWine(int id)
-        //{
-        //    return _wineRepository.removeWine(id);
-        //}
+        public GetWineByDto GetOneWine(int id)
+        {
+            return _wineRepository.GetWineById(id);
+        }
 
+        public List<Wine> GetWinesByVariety(string variety)
+        {
+            return _wineRepository.GetWinesByVariety(variety);
+        }
+
+        public bool ChangeWineStock(int id, int newStock)
+        {
+            return _wineRepository.UpdateWineStock(id, newStock);
+        }
     }
 }

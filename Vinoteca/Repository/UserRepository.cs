@@ -18,6 +18,13 @@ namespace Vinoteca.Repository
             _context = context;
         }
 
+        public User? Authenticate(string username, string password)
+        {
+
+            User? userAuthenticate = _context.Users.FirstOrDefault(u => u.UserName == username && u.Password == password);
+            return userAuthenticate;
+        }
+
         public List<User> GetUsersList()
         {
             return _context.Users.ToList();
@@ -37,12 +44,14 @@ namespace Vinoteca.Repository
 
         public GetUserByIdDto? GetOneUserById(int userId)
         {
-            var user = _context.Users.SingleOrDefault(u => u.id == userId);
+            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
             if (user is not null)
             {
                 return new GetUserByIdDto()
                 {
+           
                     UserName = user.UserName,
+  
                 };
             }
             return null;
@@ -50,7 +59,7 @@ namespace Vinoteca.Repository
 
         public void removeUser(int userId)
         {
-            var user = _context.Users.SingleOrDefault(u => u.id == userId);
+            var user = _context.Users.SingleOrDefault(u => u.Id == userId);
             if (user is null)
             {
                 throw new Exception("El cliente que intenta eliminar no existe");
@@ -65,7 +74,7 @@ namespace Vinoteca.Repository
 
         public void Delete(int id)
         {
-            _context.Users.Remove(_context.Users.Single(u => u.id == id));
+            _context.Users.Remove(_context.Users.Single(u => u.Id == id));
             _context.SaveChanges();
         }
 

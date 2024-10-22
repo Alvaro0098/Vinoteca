@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Vinoteca.Controllers;
 using Vinoteca.Data;
 using Vinoteca.Entities;
 using Vinoteca.Repository;
@@ -23,6 +24,9 @@ builder.Services.AddScoped<IWineService, WineService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IWineRepository, WineRepository>();
+builder.Services.AddScoped<UserRepository>();
+
+
 var app = builder.Build();
 
 

@@ -31,38 +31,46 @@ namespace Vinoteca.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _wineService.GetAllWines();
-            return Ok(users);
+            var wines = _wineService.GetAllWines();
+            return Ok(wines);
 
         }
 
-        //[HttpGet("{id}")]
-        //public IActionResult getOneWineById(int id)
-        //{
-        //    var wine = _wineService.getOneWine(id);
+        [HttpGet("{id}")]
+        public IActionResult getOneWineById(int id)
+        {
+            var wine = _wineService.GetOneWine(id);
 
 
-        //    if (wine != null)
-        //    {
-        //        return Ok(wine);  // Retorna el objeto completo si existe
-        //    }
+            if (wine != null)
+            {
+                return Ok(wine);
+            }
 
-        //    return NotFound();
-        //}
+            return NotFound();
+        }
 
+        [HttpGet("variety/{variety}")]
+        public IActionResult GetWinesByVariety(string variety)
+        {
+            var wines = _wineService.GetWinesByVariety(variety);
+            if (wines == null)
+            {
+                return NotFound($"No se encuentran vinos de la variedad: {variety}");
+            }
+            return Ok(wines);
+        }
 
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteWine(int id)
-        //{
-        //    bool isRemoved = _wineService.RemoveOneWine(id);
-
-        //    if (isRemoved)
-        //    {
-        //        return Ok(); // El usuario fue eliminado correctamente
-        //    }
-
-        //    return NotFound(); // El usuario no fue encontrado
-        //}
+        [HttpPut("update-stock/{id}")]
+        public IActionResult UpdateWineStock(int id, [FromBody] int newStock)
+        {
+            var result = _wineService.ChangeWineStock(id, newStock);
+            if (!result)
+            {
+                return NotFound($"No existe un vino con el id: {id}");
+            }
+            return Ok($"Stock actualizado en {newStock} para el vino con id: {id}");
+        }
 
     }
 

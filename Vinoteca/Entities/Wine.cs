@@ -4,7 +4,7 @@ namespace Vinoteca.Entities
 {
     public class Wine
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; } = string.Empty;

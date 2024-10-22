@@ -4,8 +4,8 @@ namespace Vinoteca.Entities
 {
     public class User
     {
-        public int id { get; set; }
-
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string UserName { get; set; } = string.Empty;
 

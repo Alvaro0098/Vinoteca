@@ -5,7 +5,7 @@ namespace Vinoteca.Services.interfaces
 {
     public interface IUserService
     {
-       public void AddOneUser(CreateAndUpdateUserDto dto);
+       void AddOneUser(CreateAndUpdateUserDto dto);
 
        public List<User> GetAllUsers();
 

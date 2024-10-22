@@ -18,7 +18,8 @@ namespace Vinoteca.Data
         {
             User luis = new User()
             {
-                id = 1,
+
+                Id = 1,
                 UserName = "Luis",
                 Password = "lamismadesiempre",
 
@@ -26,7 +27,7 @@ namespace Vinoteca.Data
 
             Wine malbec = new Wine()
             {
-                id = 1,
+                Id = 1,
                 Variety = "Don savignon",
                 Stock = 30,
                 Year = 100,
@@ -39,7 +40,7 @@ namespace Vinoteca.Data
                 luis);
 
             modelBuilder.Entity<Wine>().HasData(
-                luis);
+                malbec);
 
 
             base.OnModelCreating(modelBuilder);

@@ -1,14 +1,19 @@
 ﻿using Vinoteca.Entities;
+using Vinoteca.Models.Dtos;
 
 
 namespace Vinoteca.Repository.interfaces
 {
-    public interface IWineRepository 
+    public interface IWineRepository
     {
-        
-        void addOneWine(Wine wine);
-        //Wine GetWineById(int id);
-        public List<Wine> GetWinesList();
-        //bool removeWine(int id);
+
+        void addOneWine(CreateAndUpdateWineDto wine);
+        GetWineByDto GetWineById(int id);
+        public List<GetWineByDto> GetWinesList();
+        void removeWine(int id);
+
+        List<Wine> GetWinesByVariety(string variety);
+
+        bool UpdateWineStock(int id, int newStock);
     }
 }
