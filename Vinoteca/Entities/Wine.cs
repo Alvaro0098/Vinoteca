@@ -15,7 +15,6 @@ namespace Vinoteca.Entities
 
         public string Region { get; set; } = string.Empty;
 
-        //[Range(0, int.MaxValue, ErrorMessage = "La cantidad disponible en stock debe ser mayor o igual a 0.")]
         private int _stock;
         public int Stock
         {
@@ -28,6 +27,9 @@ namespace Vinoteca.Entities
         }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public int? CataId { get; set; }
+        public Cata Cata { get; set; }
 
 
         public void AddStock(int amount)
@@ -42,5 +44,7 @@ namespace Vinoteca.Entities
             if (Stock - amount < 0) throw new InvalidOperationException("No hay suficiente stock disponible.");
             Stock -= amount;
         }
+
+
     }
 }

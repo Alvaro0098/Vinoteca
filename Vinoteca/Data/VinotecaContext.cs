@@ -42,7 +42,10 @@ namespace Vinoteca.Data
             modelBuilder.Entity<Wine>().HasData(
                 malbec);
 
-
+            modelBuilder.Entity<Cata>()
+      .HasMany(c => c.Vinos)
+      .WithOne(w => w.Cata)
+      .HasForeignKey(w => w.CataId);
             base.OnModelCreating(modelBuilder);
         }
 

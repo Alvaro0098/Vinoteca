@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Vinoteca.Models.Dtos;
 using Vinoteca.Services.interfaces;
 
@@ -14,6 +15,7 @@ namespace Vinoteca.Controllers
             _userService = userService;
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult AddUser([FromBody] CreateAndUpdateUserDto dto)
         {
@@ -28,6 +30,7 @@ namespace Vinoteca.Controllers
             return Created("Created", dto);
         }
 
+
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -36,7 +39,7 @@ namespace Vinoteca.Controllers
 
         }
 
-
+        [Authorize]
         [HttpDelete]
         public IActionResult RemoveUser(int id)
         {

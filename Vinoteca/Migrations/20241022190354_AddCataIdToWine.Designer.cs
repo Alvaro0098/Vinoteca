@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vinoteca.Data;
 
@@ -10,9 +11,11 @@ using Vinoteca.Data;
 namespace Vinoteca.Migrations
 {
     [DbContext(typeof(VinotecaContext))]
-    partial class VinotecaContextModelSnapshot : ModelSnapshot
+    [Migration("20241022190354_AddCataIdToWine")]
+    partial class AddCataIdToWine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -72,7 +75,7 @@ namespace Vinoteca.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CataId")
+                    b.Property<int>("CataId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
@@ -106,7 +109,8 @@ namespace Vinoteca.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 10, 22, 16, 21, 36, 692, DateTimeKind.Local).AddTicks(3429),
+                            CataId = 0,
+                            CreatedAt = new DateTime(2024, 10, 22, 16, 3, 52, 341, DateTimeKind.Local).AddTicks(6420),
                             Name = "",
                             Region = "Chaco",
                             Stock = 30,
@@ -119,7 +123,9 @@ namespace Vinoteca.Migrations
                 {
                     b.HasOne("Vinoteca.Entities.Cata", "Cata")
                         .WithMany("Vinos")
-                        .HasForeignKey("CataId");
+                        .HasForeignKey("CataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cata");
                 });
